@@ -97,8 +97,7 @@ function displayMessageOnBoard(toDisplayFromFirebase) {
             }
     $(this).parent().fadeOut(500, function() {
                
-//             // let fire = firebase.database().ref(name);
-//             // fire.remove();
+
                         
             $(this).remove();
             
