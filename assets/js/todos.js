@@ -23,11 +23,14 @@ function updateDB(event){
 // Check off specific todos by clicking
 $("ul").on("click", "li", function() {
     $(this).toggleClass("completed");
+if (matching === true) {
+    
+}
 });
 
 //Click on X to delete To-Do
-//We add the event listener to the ul that's always been on the page
-//But the function can run when a new or old span is clicked
+// We add the event listener to the ul that's always been on the page
+// But the function can run when a new or old span is clicked
  $("ul").on("click", "span", function(event) { 
   $(this).parent().fadeOut(500, function() {
       $(this).remove();
@@ -65,6 +68,7 @@ database.on('child_removed', removeMessageFromBoard);
 // database.on('child_removed', removeMessageFromBoard);
 
 var matching = false;
+var struckThrough = false;
 
 function displayMessageOnBoard(toDisplayFromFirebase) {
     const messageToDisplay = toDisplayFromFirebase.val();  //Val returns an object, reads the value of that row
@@ -103,6 +107,14 @@ function displayMessageOnBoard(toDisplayFromFirebase) {
         //THIS SHIT IS AMAZING!
         event.stopPropagation();
     });
+
+$("ul").on("click", "li", function() {
+        $(this).toggleClass("completed");
+    struckThrough = true;
+    if (matching === true) {
+        
+    }
+    });
 }
 
 function removeMessageFromBoard(toRemoveFromFirebase) {
