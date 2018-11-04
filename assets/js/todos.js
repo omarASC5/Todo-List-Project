@@ -71,29 +71,40 @@ function displayMessageOnBoard(toDisplayFromFirebase) {
 	$("ul").append(`<li><span><i class="far fa-trash-alt"></i></span>${messageToDisplay}</li>`);
 
 	$("li").mouseenter(function(){
-		let text = $(this).text();
-		console.log(text);
+		var text = $(this).text();
 		if (text === messageToDisplay) {
 			let name = toDisplayFromFirebase.key;
 			let fire = firebase.database().ref(name);
 			fire.remove();
+
+			$("ul").on("click", "span", function(event) { 
+				$(this).parent().fadeOut(500, function() {
+					// let fire = firebase.database().ref(name);
+					// fire.remove();
+					$(this).remove();
+					
+				})
+				//Stops event bubbling, span event triggering parent events from li or container
+				//THIS SHIT IS AMAZING!
+				event.stopPropagation();
+			});
 		}
 	});
 	//if the key == the key of the one displaying the message
 	
-	let name = toDisplayFromFirebase.key;
-	console.log(name);
-	$("ul").on("click", "span", function(event) { 
-		$(this).parent().fadeOut(500, function() {
-			// let fire = firebase.database().ref(name);
-			// fire.remove();
-			$(this).remove();
+	// let name = toDisplayFromFirebase.key;
+	// console.log(name);
+	// $("ul").on("click", "span", function(event) { 
+	// 	$(this).parent().fadeOut(500, function() {
+	// 		// let fire = firebase.database().ref(name);
+	// 		// fire.remove();
+	// 		$(this).remove();
 			
-		})
-		//Stops event bubbling, span event triggering parent events from li or container
-		//THIS SHIT IS AMAZING!
-		event.stopPropagation();
-	});
+	// 	})
+	// 	//Stops event bubbling, span event triggering parent events from li or container
+	// 	//THIS SHIT IS AMAZING!
+	// 	event.stopPropagation();
+	// });
 }
 
 function removeMessageFromBoard(toRemoveFromFirebase) {
