@@ -70,12 +70,17 @@ function displayMessageOnBoard(toDisplayFromFirebase) {
 	const messageToDisplay = toDisplayFromFirebase.val();  //Val returns an object, reads the value of that row
 	$("ul").append(`<li><span><i class="far fa-trash-alt"></i></span>${messageToDisplay}</li>`);
 
+	$("li").mouseenter(function(){
+		let text = $(this).text();
+		console.log(text);
+		if (text === messageToDisplay) {
+			let name = toDisplayFromFirebase.key;
+			let fire = firebase.database().ref(name);
+			fire.remove();
+		}
+	});
 	//if the key == the key of the one displaying the message
-	if (firebase.database().ref() === toDisplayFromFirebase.key) {
-		let name = toDisplayFromFirebase.key;
-		let fire = firebase.database().ref(name);
-		fire.remove();
-	}
+	
 	let name = toDisplayFromFirebase.key;
 	console.log(name);
 	$("ul").on("click", "span", function(event) { 
