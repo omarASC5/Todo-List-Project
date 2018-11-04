@@ -22,39 +22,39 @@ function updateDB(event){
 }
 // Check off specific todos by clicking
 $("ul").on("click", "li", function() {
-	$(this).toggleClass("completed");
+    $(this).toggleClass("completed");
 });
 
 //Click on X to delete To-Do
 //We add the event listener to the ul that's always been on the page
 //But the function can run when a new or old span is clicked
-// $("ul").on("click", "span", function(event) { 
-// 	$(this).parent().fadeOut(500, function() {
-// 		$(this).remove();
-		
-// 	})
-// 	//Stops event bubbling, span event triggering parent events from li or container
-// 	//THIS SHIT IS AMAZING!
-// 	event.stopPropagation();
-// });
+ $("ul").on("click", "span", function(event) { 
+  $(this).parent().fadeOut(500, function() {
+      $(this).remove();
+        
+  })
+  //Stops event bubbling, span event triggering parent events from li or container
+  //THIS SHIT IS AMAZING!
+  event.stopPropagation();
+ });
 
 
 $("input[type='text'").on("keypress", function(event){
-	
-	if (event.which === 13) {
-		//Add the new to do to the ul
-		database.push($('#message').val());
-		let todoText = $(this).val();
-		$(this).val("");
-		
-		//Appends a string of html to whatever we clicked on
-		// $("ul").append(`<li><span><i class="far fa-trash-alt"></i></span>${todoText}</li>`);
-		//Clear the input box of text
-	}
+    
+    if (event.which === 13) {
+        //Add the new to do to the ul
+        database.push($('#message').val());
+        let todoText = $(this).val();
+        $(this).val("");
+        
+        //Appends a string of html to whatever we clicked on
+        // $("ul").append(`<li><span><i class="far fa-trash-alt"></i></span>${todoText}</li>`);
+        //Clear the input box of text
+    }
 });
 
 $(".fa-plus").click(function() {
-	$("input[type='text'").fadeToggle();
+    $("input[type='text'").fadeToggle();
 })
 
 
@@ -64,52 +64,50 @@ database.on('child_removed', removeMessageFromBoard);
 // var parent = database.parent();
 // database.on('child_removed', removeMessageFromBoard);
 
-
+var matching = false;
 
 function displayMessageOnBoard(toDisplayFromFirebase) {
-	const messageToDisplay = toDisplayFromFirebase.val();  //Val returns an object, reads the value of that row
-	$("ul").append(`<li><span><i class="far fa-trash-alt"></i></span>${messageToDisplay}</li>`);
+    const messageToDisplay = toDisplayFromFirebase.val();  //Val returns an object, reads the value of that row
+    $("ul").append(`<li><span><i class="far fa-trash-alt"></i></span>${messageToDisplay}</li>`);
 
-	$("li").mouseenter(function(){
-		var text = $(this).text();
-		if (text === messageToDisplay) {
-			let name = toDisplayFromFirebase.key;
-			let fire = firebase.database().ref(name);
-			fire.remove();
-
-			$("ul").on("click", "span", function(event) { 
-				$(this).parent().fadeOut(500, function() {
-					// let fire = firebase.database().ref(name);
-					// fire.remove();
-					$(this).remove();
-					
-				})
-				//Stops event bubbling, span event triggering parent events from li or container
-				//THIS SHIT IS AMAZING!
-				event.stopPropagation();
-			});
-		}
-	});
-	//if the key == the key of the one displaying the message
-	
-	// let name = toDisplayFromFirebase.key;
-	// console.log(name);
-	// $("ul").on("click", "span", function(event) { 
-	// 	$(this).parent().fadeOut(500, function() {
-	// 		// let fire = firebase.database().ref(name);
-	// 		// fire.remove();
-	// 		$(this).remove();
-			
-	// 	})
-	// 	//Stops event bubbling, span event triggering parent events from li or container
-	// 	//THIS SHIT IS AMAZING!
-	// 	event.stopPropagation();
-	// });
+    $("li").mouseenter(function(){
+        var text = $(this).text();
+        if (text === messageToDisplay && $(this).on("ul").on("click", "span")) {
+            matching = true;
+//             let name = toDisplayFromFirebase.key;
+            console.log(matching);
+//             let fire = firebase.database().ref(name);
+//             fire.remove();
+        }
+    });
+    //if the key == the key of the one displaying the message
+    
+    // let name = toDisplayFromFirebase.key;
+    // console.log(name);
+    $("ul").on("click", "span", function(event) { 
+    //         var text = $(this).text();
+            if (matching === true) {
+                 let name = toDisplayFromFirebase.key;
+                 let fire = firebase.database().ref(name);
+                 fire.remove();
+            }
+    $(this).parent().fadeOut(500, function() {
+               
+//             // let fire = firebase.database().ref(name);
+//             // fire.remove();
+                        
+            $(this).remove();
+            
+        })
+        //Stops event bubbling, span event triggering parent events from li or container
+        //THIS SHIT IS AMAZING!
+        event.stopPropagation();
+    });
 }
 
 function removeMessageFromBoard(toRemoveFromFirebase) {
-	const messageToRemove = toRemoveFromFirebase.key;
-	console.log(name);
+    const messageToRemove = toRemoveFromFirebase.key;
+    console.log(name);
 }
 
 // removeMessageFromBoard("ok");
