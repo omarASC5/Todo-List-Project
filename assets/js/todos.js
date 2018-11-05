@@ -126,7 +126,14 @@ Array.prototype.randomElement = function () {
 }
 
 let quoteElement = document.getElementById("quote");
-let arrayOfQuotes = ["sacia", "omar", "denzell"];
+let arrayOfQuotes = ["You're doing a good job", "Don't worry about it. The world is going to explode anyways. -Daddy", 
+"Bruh. -Denzell", "I want to sleep -Denzell", "I'm hungry!!! -Omar", "Alright let's do this -Omar",
+"Oh my god it's soooo cute -Sacia to all dogs she meets", "Can I pet him? -Sacia to all dog owners",
+"I need some hot chocolate right now -Denzell", "I have a lot of Homework to do -Denzell", "Cafe -Denzell",
+"We need a whiteboard - Denzell", "Omar, go download some ram -Denzell", "Drinks milk even when she is lactose intolerant -SACIA",
+"Just take it. -Denzell", "I think my purpose in life is to make Denzell uncomfortable -Sacia", 
+"Goodnight mommy -Omar", "CSGO? -Omar, Denzell, George", "My brother is really cool -Sacia", "So cool. -Sacia",
+"Harro Crazy Xiao He - Koko", "What? -George", "She's hot. - George"];
 quoteElement.innerHTML = arrayOfQuotes.randomElement();
 console.log(arrayOfQuotes.randomElement());
 
