@@ -121,12 +121,44 @@ function removeMessageFromBoard(toRemoveFromFirebase) {
     console.log(name);
 }
 
-var myIndex = 0;
-carousel();
+Array.prototype.randomElement = function () {
+    return this[Math.floor(Math.random() * this.length)]
+}
+
+let quoteElement = document.getElementById("quote");
+let arrayOfQuotes = ["sacia", "omar", "denzell"];
+quoteElement.innerHTML = arrayOfQuotes.randomElement();
+console.log(arrayOfQuotes.randomElement());
+
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
+  }
+  
+
+
+var myIndex;
+  carousel();
 
 function carousel() {
     var i;
     var x = document.getElementsByClassName("mySlides");
+    console.log(x);
+     myIndex = randomIndex = Math.floor(Math.random() * x.length);
     for (i = 0; i < x.length; i++) {
        x[i].style.display = "none";  
     }
