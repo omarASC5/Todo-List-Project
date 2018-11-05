@@ -133,7 +133,10 @@ let arrayOfQuotes = ["You're doing a good job", "Don't worry about it. The world
 "We need a whiteboard - Denzell", "Omar, go download some ram -Denzell", "Drinks milk even when she is lactose intolerant -SACIA",
 "Just take it. -Denzell", "I think my purpose in life is to make Denzell uncomfortable -Sacia", 
 "Goodnight mommy -Omar", "CSGO? -Omar, Denzell, George", "My brother is really cool -Sacia", "So cool. -Sacia",
-"Harro Crazy Xiao He - Koko", "What? -George", "She's hot. - George"];
+"Harro Crazy Xiao He - Koko", "What? -George", "She's hot. - George", "I am really happy I am friends with you guys. I think I can really be myself -Sacia",
+"What, I am awake -Omar", "Takes one headphone off his ear -Denzell", "Hi guys! -Omar's mom",
+"searches lo-fi hip hop - Sacia", "Auntie Poh Chee -Sacia", "Machine learning, genetic algorithms, computers, technology -Omar",
+"Denzell looks so thiiiiccc - Sacia", "yall needa stop -Denzell"];
 quoteElement.innerHTML = arrayOfQuotes.randomElement();
 console.log(arrayOfQuotes.randomElement());
 
